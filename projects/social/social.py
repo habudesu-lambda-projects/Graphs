@@ -1,3 +1,5 @@
+import random
+
 class User:
     def __init__(self, name):
         self.name = name
@@ -43,10 +45,24 @@ class SocialGraph:
         self.users = {}
         self.friendships = {}
         # !!!! IMPLEMENT ME
-
+        
         # Add users
+        first_names = ["Bob", "Karen", "Ken", "Dylan", "Orson", "Dan", "Cecilia", "Erin", "Alexis", "Chelsea", "George", "Emily", "Melissa", "Joe", "Andrew", "Bernie", "Elizabeth", "Kamela", "Donald", "Mike"]
+        last_names = ["Dole", "Li", "Ruf", "McGregor", "Boston", "Dorsett", "Hojer", "Kreie", "Best", "Perna", "Handler", "Jetson", "Grieve", "Biden", "Yang", "Sanders", "Warren", "Trump", "Harris", "Fauci", "Hughes"]
 
+        i = 0
+        while i < num_users:
+            name = random.choice("Bob", "Karen", "Ken", "Dylan", "Orson", "Dan", "Cecilia", "Erin", "Alexis", "Chelsea", "George", "Emily", "Melissa", "Joe", "Andrew", "Bernie", "Elizabeth", "Kamela", "Donald", "Mike") + " " + random.choice("Dole", "Li", "Ruf", "McGregor", "Boston", "Dorsett", "Hojer", "Kreie", "Best", "Perna", "Handler", "Jetson", "Grieve", "Biden", "Yang", "Sanders", "Warren", "Trump", "Harris", "Fauci", "Hughes")
+            self.add_user(name)
+            i += 1
         # Create friendships
+        j = 0
+        while j < num_users*avg_friendships:
+            user1 = random.randint(0, len(self.users)-1)
+            user2 = random.randint(0, len(self.users)-1)
+            if user1 != user2 and user1 not in self.friendships[user2] and user2 not in self.friendships[user1]:
+                self.add_friendship(user1, user2)
+                j += 1
 
     def get_all_social_paths(self, user_id):
         """
